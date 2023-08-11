@@ -1,0 +1,16 @@
+import express from "express";
+import dotenv from "dotenv";
+
+//configure env
+dotenv.config();
+
+//rest object
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("<h1>Welcome to Ecommerce app</h1>");
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`Your server is running on port ${process.env.PORT}`);
+});
