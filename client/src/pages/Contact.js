@@ -4,7 +4,24 @@ import Layout from "../components/Layout/Layout";
 const Contact = () => {
   return (
     <Layout>
-      <h1>contact page</h1>
+      <div className="container-fluid contactus">
+        <div className="row p-5">
+          <div className="col-md-6 mt-5">
+            <img src="/assets/contactus.jpeg" alt="" className="w-100" />
+          </div>
+          <div className="col-md-4 mt-5">
+            <h2 className="text-center bg-dark text-light">Contact Us</h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Asperiores voluptatem quia nulla odio, assumenda dicta tempore
+              quae. Cumque, porro veritatis?
+            </p>
+            <p>✉️ : mail@mail.com</p>
+            <p>📞 : 8484848481</p>
+            <p>💁🏻‍♂️ : (0300300) toll free</p>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

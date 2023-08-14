@@ -28,3 +28,29 @@
   font-family: "roboto",sans-serif;
   letter-spacing: 2px;
 }
+
+/* footer styles */
+.footer{
+  height: 10rem;
+  background-color: rgb(89, 86, 86) !important;
+}
+
+.footer a{
+  text-decoration: none;
+  color: white;
+  padding: 0.6rem;
+}
+
+.footer a:hover{
+  color: #ffefba;
+  border-bottom: 2px solid #ffefba;
+}
+
+.contactus{
+  /* margin: 0;
+  padding: 0; */
+  /* height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
+}
