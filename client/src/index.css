@@ -31,9 +31,19 @@
 
 /* footer styles */
 .footer{
-  height: 10rem;
+  height: "100%";
   background-color: rgb(89, 86, 86) !important;
 }
+
+@media screen and (max-width: 310px) {
+  .footer p{
+    font-size: 0.86rem;
+  }
+  .footer h4{
+    font-size: 1rem;
+  }
+}
+
 
 .footer a{
   text-decoration: none;
@@ -46,11 +56,33 @@
   border-bottom: 2px solid #ffefba;
 }
 
-.contactus{
-  /* margin: 0;
-  padding: 0; */
-  /* height: 70vh;
+/* pagenotfound */
+.pagenotfound{
+  min-height: 50vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center; */
+  margin-bottom: 0;
+}
+.pagenotfound a{
+  border: 1px solid black;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 0.6rem;
+  margin-top: 0.8rem;
+  color:  black;
+  
+}
+.pagenotfound a:hover{
+  background-color: black;
+  color: white;
+}
+
+.developer img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  box-shadow: 0.28rem 0.1rem rgb(69, 65, 65);
 }

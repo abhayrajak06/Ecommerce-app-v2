@@ -6,11 +6,11 @@ const Contact = () => {
     <Layout>
       <div className="container-fluid contactus">
         <div className="row p-5">
-          <div className="col-md-6 mt-5">
+          <div className="col-md-6">
             <img src="/assets/contactus.jpeg" alt="" className="w-100" />
           </div>
-          <div className="col-md-4 mt-5">
-            <h2 className="text-center bg-dark text-light">Contact Us</h2>
+          <div className="col-md-4 mt-4">
+            <h2 className="text-center bg-dark text-light p-2">Contact Us</h2>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Asperiores voluptatem quia nulla odio, assumenda dicta tempore
