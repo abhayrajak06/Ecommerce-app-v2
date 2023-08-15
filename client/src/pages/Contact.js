@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 
 const Contact = () => {
   return (
-    <Layout>
+    <Layout title={"Contact us -Ecommerce App"}>
       <div className="container-fluid contactus">
         <div className="row p-5">
           <div className="col-md-6">

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Pagenotfound = () => {
   const navigate = useNavigate();
   return (
-    <Layout>
+    <Layout title={"Page Not Found - Ecommerce App"}>
       <div className="pagenotfound">
         <h1 style={{ fontSize: "8rem" }}>404</h1>
         <h3>Oops ! Page Not Found</h3>
