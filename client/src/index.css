@@ -86,3 +86,33 @@
   width: 50%;
   box-shadow: 0.28rem 0.1rem rgb(69, 65, 65);
 }
+
+
+/* register page */
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(159, 183, 183);
+}
+
+.register form{
+  background-color: rgb(228, 215, 198);
+  padding: 2.6rem;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+}
+
+.register h1{
+  text-transform: uppercase;
+  font-family: "Poppins",sans-serif;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 310px) {
+  .register form{
+    padding: 1.6rem;
+  }
+}

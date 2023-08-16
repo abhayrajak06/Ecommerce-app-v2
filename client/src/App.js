@@ -6,6 +6,9 @@ import Policy from "./pages/Policy";
 import About from "./pages/About";
 import Pagenotfound from "./pages/Pagenotfound";
 import Developer from "./pages/Developer";
+import Register from "./pages/Auth/Register";
+import { Toaster } from "react-hot-toast";
+import Login from "./pages/Auth/Login";
 
 function App() {
   return (
@@ -16,8 +19,11 @@ function App() {
         <Route path={"/policy"} element={<Policy />} />
         <Route path={"/about"} element={<About />} />
         <Route path={"/developer"} element={<Developer />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path={"/*"} element={<Pagenotfound />} />
       </Routes>
+      <Toaster />
     </>
   );
 }
