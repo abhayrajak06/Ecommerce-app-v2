@@ -84,7 +84,8 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-  box-shadow: 0.28rem 0.1rem rgb(69, 65, 65);
+  /* box-shadow: 0.28rem 0.1rem rgb(69, 65, 65); */
+  box-shadow: 1rem 1rem 1rem -0.6rem rgb(128, 126, 126);
 }
 
 

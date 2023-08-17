@@ -3,12 +3,14 @@ import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useAuth } from "../../components/context/auth";
 
 const Login = () => {
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const handleChange = (e) => {
     const value = e.target.value;
@@ -25,6 +27,12 @@ const Login = () => {
       });
       if (res && res.data.success) {
         toast.success("Login Successfully");
+        setAuth({
+          ...auth,
+          user: res?.data.user,
+          token: res?.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res?.data));
         navigate("/");
       }
     } catch (error) {
@@ -35,7 +43,7 @@ const Login = () => {
   return (
     <Layout title={"Register - Ecommerce App"}>
       <div>
-        <div className="register" style={{ height: "70vh" }}>
+        <div className="register" style={{ height: "68vh" }}>
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
             <div className="mb-3">
