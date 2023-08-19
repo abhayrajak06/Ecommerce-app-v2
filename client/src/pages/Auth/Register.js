@@ -11,6 +11,7 @@ const Register = () => {
     password: "",
     address: "",
     phone: "",
+    answer: "",
   });
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -25,12 +26,14 @@ const Register = () => {
       const password = details.password;
       const phone = details.phone;
       const address = details.address;
+      const answer = details.answer;
       const res = await axios.post("/api/v2/auth/register", {
         name,
         email,
         password,
         phone,
         address,
+        answer,
       });
       if (res && res.data.success) {
         toast.success("Registerd Successfully");
@@ -101,6 +104,17 @@ const Register = () => {
                 onChange={handleChange}
                 required
                 style={{ maxHeight: "3rem" }}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="answer"
+                value={details.answer}
+                className="form-control"
+                placeholder="Your favourite sports ?"
+                onChange={handleChange}
+                required
               />
             </div>
             <button type="submit" className="btn btn-primary">

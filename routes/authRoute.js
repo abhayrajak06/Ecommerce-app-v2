@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  forgotPasswordController,
   loginController,
   registerController,
 } from "../controllers/authController.js";
@@ -14,6 +15,9 @@ router.post("/register", registerController);
 
 //login || post method
 router.post("/login", loginController);
+
+//forgot password || post
+router.post("/forgot-password", forgotPasswordController);
 
 //protected auth routes
 router.get("/user-auth", requireSignIn, (req, res) => {
