@@ -117,3 +117,9 @@
     padding: 1.6rem;
   }
 }
+
+@media screen and (max-width: 380px) {
+  .details h3{
+    font-size: 1rem;
+  }
+}

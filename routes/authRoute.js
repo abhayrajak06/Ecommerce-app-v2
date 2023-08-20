@@ -4,7 +4,7 @@ import {
   loginController,
   registerController,
 } from "../controllers/authController.js";
-import { requireSignIn } from "../middlewares/authMiddleware.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 //router object
 const router = express.Router();
@@ -21,6 +21,11 @@ router.post("/forgot-password", forgotPasswordController);
 
 //protected auth routes
 router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+//protected admin routes
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
