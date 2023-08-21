@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoute.js";
 import cors from "cors";
 
 //configure env
@@ -19,6 +20,7 @@ app.use(express.json());
 
 //routes
 app.use("/api/v2/auth", authRoutes);
+app.use("/api/v2/category", categoryRoutes);
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Ecommerce app</h1>");
