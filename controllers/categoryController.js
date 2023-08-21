@@ -21,6 +21,7 @@ export const createCategoryController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Category created successfully",
+      category,
     });
   } catch (error) {
     console.log(error);
