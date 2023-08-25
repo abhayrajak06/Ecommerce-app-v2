@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryForm = ({ value, setValue, handleSubmit }) => {
+const CategoryForm = ({ value, setValue, handleSubmit, action = "Submit" }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -14,7 +14,7 @@ const CategoryForm = ({ value, setValue, handleSubmit }) => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          {action}
         </button>
       </form>
     </>
