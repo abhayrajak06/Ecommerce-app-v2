@@ -81,6 +81,8 @@ const CreateCategory = () => {
   //handle delete
   const handleDelete = async (cId) => {
     try {
+      let answer = window.prompt("Are you sure want to delete this product ?");
+      if (!answer) return;
       const { data } = await axios.delete(
         `/api/v2/category/delete-category/${cId}`
       );
