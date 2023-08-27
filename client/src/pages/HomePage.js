@@ -9,6 +9,19 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  //get total count
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get("/api/v2/product/product-count");
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //get all categories
   const getAllCategory = async (req, res) => {
@@ -24,20 +37,46 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllCategory();
+    getTotal();
   }, []);
 
   //get products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v2/product/get-products");
+      setLoading(true);
+      const { data } = await axios.get(`/api/v2/product/product-list/${page}`);
+      setLoading(false);
       setProducts(data?.products);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (checked.length <= 0 || radio.length <= 0) getAllProducts();
+  }, [checked.length, radio.length]);
+
+  useEffect(() => {
+    if (checked.length > 0 || radio.length > 0) filterProduct();
+  }, [checked, radio]);
+
+  //loadmore
+  const loadmore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/v2/product/product-list/${page}`);
+      setLoading(false);
+      setProducts([...products, ...data?.products]);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadmore();
+  }, [page]);
 
   //filter by categories
   const handleFilter = async (value, id) => {
@@ -48,6 +87,19 @@ const HomePage = () => {
       all = all.filter((c) => c !== id);
     }
     setChecked(all);
+  };
+
+  //get filterd product
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post("/api/v2/product/product-filters", {
+        checked,
+        radio,
+      });
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -76,10 +128,18 @@ const HomePage = () => {
                 ))}
               </Radio.Group>
             </div>
+            <div className="mt-3">
+              <button
+                className="btn btn-danger w-75"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+            </div>
           </div>
           <div className="col-md-9">
-            {JSON.stringify(checked, null, 4)}
-            {JSON.stringify(radio, null, 4)}
+            {/* {JSON.stringify(checked, null, 4)}
+            {JSON.stringify(radio, null, 4)} */}
             <h1 className="text-center">All Products</h1>
             <div className="d-flex flex-wrap gap-4">
               {products?.map((p) => (
@@ -92,6 +152,7 @@ const HomePage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description}</p>
+                    <p className="card-text"> ₹ {p.price}</p>
                     <button
                       className="btn btn-primary m-1"
                       style={{ fontSize: "0.7rem" }}
@@ -107,6 +168,19 @@ const HomePage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="m-2 p-3">
+              {products && products.length < total && (
+                <button
+                  className="btn btn-warning"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? "Loading..." : "Load More"}
+                </button>
+              )}
             </div>
           </div>
         </div>

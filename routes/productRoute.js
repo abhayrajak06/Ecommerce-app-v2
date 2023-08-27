@@ -4,6 +4,9 @@ import {
   createProductController,
   deleteProductController,
   productController,
+  productCountController,
+  productFiltersController,
+  productListController,
   productPhotoController,
   singleProductController,
   updateProductController,
@@ -46,5 +49,14 @@ router.delete(
   isAdmin,
   deleteProductController
 );
+
+//filter product
+router.post("/product-filters", productFiltersController);
+
+//count product
+router.get("/product-count", productCountController);
+
+//product per page
+router.get("/product-list/:page", productListController);
 
 export default router;
