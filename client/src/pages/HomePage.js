@@ -170,7 +170,7 @@ const HomePage = () => {
               ))}
             </div>
             <div className="m-2 p-3">
-              {products && products.length < total && (
+              {products && products.length > 0 && products.length < total && (
                 <button
                   className="btn btn-warning"
                   onClick={(e) => {
