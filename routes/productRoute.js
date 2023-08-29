@@ -8,6 +8,7 @@ import {
   productFiltersController,
   productListController,
   productPhotoController,
+  relatedProductController,
   searchProductController,
   singleProductController,
   updateProductController,
@@ -62,5 +63,8 @@ router.get("/product-list/:page", productListController);
 
 //search products
 router.get("/search/:keyword", searchProductController);
+
+//similar products
+router.get("/related-products/:pid/:cid", relatedProductController);
 
 export default router;
