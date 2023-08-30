@@ -10,11 +10,13 @@ const Categories = () => {
       <div className="container">
         <div className="row justify-content-center">
           <h3 className="text-center mt-2">All Categories</h3>
-          <div className="col-md-10 d-flex justify-content-center mt-3 mb-2 gap-4">
+          <div className="col-md-12 d-flex justify-content-center mt-3 mb-2 gap-4 flex-wrap">
             {categories?.map((c) => (
               <Link
+                key={c._id}
                 to={`/category/${c.slug}`}
-                className="btn btn-warning w-50 p-3"
+                className="btn btn-warning  p-3"
+                style={{ width: "18rem" }}
               >
                 {c.name}
               </Link>
