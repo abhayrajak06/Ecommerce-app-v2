@@ -26,6 +26,30 @@ const CartPage = () => {
             </h4>
           </div>
         </div>
+        <div className="row">
+          <div className="col-md-8">
+            {cart?.map((p) => (
+              <div className="row card flex-row mb-2 p-3">
+                <div className="col-md-4">
+                  <img
+                    src={`/api/v2/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    width={"100px"}
+                    height={"100px"}
+                  />
+                </div>
+                <div className="col-md-8">
+                  <p>{p.name}</p>
+                  <p>{p.description.substring(0, 30)}</p>
+                  <p>Price : {p.price}</p>
+                  <button className="btn btn-danger">Remove</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="col-md-4">Checkout | Payment</div>
+        </div>
       </div>
     </Layout>
   );
