@@ -172,6 +172,10 @@ const HomePage = () => {
                       style={{ fontSize: "0.7rem" }}
                       onClick={() => {
                         setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
                         toast.success("Item added to Cart");
                       }}
                     >
