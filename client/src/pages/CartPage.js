@@ -2,12 +2,29 @@ import React from "react";
 import Layout from "../components/Layout/Layout";
 import { useAuth } from "../components/context/auth";
 import { useCart } from "../components/context/cart";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  //total price
+  const totalPrice = () => {
+    try {
+      let total = 0;
+      cart?.map((item) => {
+        total += item.price;
+        return total;
+      });
+      return total.toLocaleString("en-IN", {
+        style: "currency",
+        currency: "inr",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const removeCartItem = (pid) => {
     try {
@@ -38,10 +55,10 @@ const CartPage = () => {
             </h4>
           </div>
         </div>
-        <div className="row">
+        <div className="row p-3">
           <div className="col-md-8">
             {cart?.map((p) => (
-              <div className="row card w-75 flex-row mb-2 p-2">
+              <div key={p._id} className="row card w-75 flex-row mb-2 p-2">
                 <div className="col-md-4">
                   <img
                     src={`/api/v2/product/product-photo/${p._id}`}
@@ -65,7 +82,12 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4">Checkout | Payment</div>
+          <div className="col-md-4 text-center">
+            <h2>Cart Summary</h2>
+            <p>Total | Checkout | Payment</p>
+            <hr />
+            <h4>Total : {totalPrice()}</h4>
+          </div>
         </div>
       </div>
     </Layout>
