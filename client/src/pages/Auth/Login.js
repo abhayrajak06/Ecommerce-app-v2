@@ -82,6 +82,9 @@ const Login = () => {
                   Forgot Password
                 </Link>
               </button>
+              <p className="mt-1" style={{ fontSize: "0.8rem" }}>
+                Don't have any account yet? <Link to={"/register"}>Signup</Link>
+              </p>
             </div>
           </form>
         </div>
