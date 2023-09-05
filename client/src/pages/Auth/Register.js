@@ -120,7 +120,7 @@ const Register = () => {
             <button type="submit" className="btn btn-primary w-100">
               Register
             </button>
-            <p className="mt-1" style={{ fontSize: "0.9rem" }}>
+            <p className="mt-1" style={{ fontSize: "0.85rem" }}>
               Already have an account? <Link to={"/login"}>Login</Link>
             </p>
           </form>
