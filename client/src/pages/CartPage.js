@@ -28,11 +28,18 @@ const CartPage = () => {
 
   const removeCartItem = (pid) => {
     try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
+      // let myCart = [...cart];
+      // let index = myCart.findIndex((item) => item._id === pid);
+      // myCart.splice(index, 1);
+      // setCart(myCart);
+      // localStorage.setItem("cart", JSON.stringify(myCart));
+      const updatedCart = cart.filter((item) => item._id !== pid);
+
+      // Update the state with the new cart
+      setCart(updatedCart);
+
+      // Update localStorage with the new cart
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +65,10 @@ const CartPage = () => {
         <div className="row p-3">
           <div className="col-md-8">
             {cart?.map((p) => (
-              <div key={p._id} className="row card w-75 flex-row mb-2 p-2">
+              <div
+                key={p._id + p.name}
+                className="row card w-75 flex-row mb-2 p-2"
+              >
                 <div className="col-md-4">
                   <img
                     src={`/api/v2/product/product-photo/${p._id}`}
