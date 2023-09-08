@@ -6,6 +6,7 @@ import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../components/context/cart";
 import toast from "react-hot-toast";
+import SearchInput from "../components/Form/SearchInput";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -110,8 +111,28 @@ const HomePage = () => {
   return (
     <Layout title={"Best offerce - shop now"}>
       <div className="container-fluid">
+        <div className="row">
+          <div
+            className="col-md-12 d-flex justify-content-center align-items-center"
+            style={{
+              backgroundImage: `url('/assets/bannerImg.jpg')`, // Replace with the path to your image
+              backgroundSize: "cover", // You can adjust this property to control how the image is displayed
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              height: "22rem",
+              width: "100%",
+              boxShadow: "0 5px 20px rgba(5, 1, 9, 0.7)",
+              transition: "transform 0.2s ease-in-out",
+              borderRadius: "0 0 1.6rem 1.6rem",
+
+              // You can also set other background properties like background-color here if needed
+            }}
+          >
+            <SearchInput />
+          </div>
+        </div>
         <div className="row p-3 d-flex justify-content-between">
-          <div className="col-md-2">
+          <div className="col-md-2 mt-2">
             <h4 className="text-center">Filter By Category</h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
@@ -142,7 +163,7 @@ const HomePage = () => {
               </button>
             </div>
           </div>
-          <div className="col-md-9">
+          <div className="col-md-10">
             {/* {JSON.stringify(checked, null, 4)}
             {JSON.stringify(radio, null, 4)} */}
             <h1 className="text-center">All Products</h1>

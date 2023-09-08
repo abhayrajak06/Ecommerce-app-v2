@@ -13,6 +13,14 @@
   text-transform: uppercase;
   box-shadow: 0 8px 6px -6px rgb(128, 126, 126);
   border-bottom: solid gray !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Background color for the navbar */
+  padding: 10px 0; /* Adjust padding as needed */
+  z-index: 1000;
+  
 }
 
 .nav-link{
@@ -129,4 +137,5 @@
     width: 100% !important;
   }
 }
+
 
