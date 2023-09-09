@@ -108,6 +108,27 @@ const HomePage = () => {
     }
   };
 
+  //add to cart
+  const addToCart = (product, quantity) => {
+    // Check if the product already exists in the cart
+    const existingProductIndex = cart.findIndex(
+      (item) => item.product._id === product._id
+    );
+
+    if (existingProductIndex !== -1) {
+      // If the product exists, update its quantity
+      const updatedCart = [...cart];
+      updatedCart[existingProductIndex].quantity += quantity;
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      // If the product is not in the cart, add it
+      const updatedCart = [...cart, { product, quantity }];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  };
+
   return (
     <Layout title={"Best offerce - shop now"}>
       <div className="container-fluid">
@@ -192,11 +213,12 @@ const HomePage = () => {
                       className="btn btn-secondary m-1"
                       style={{ fontSize: "0.7rem" }}
                       onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
+                        // setCart([...cart, p]);
+                        // localStorage.setItem(
+                        //   "cart",
+                        //   JSON.stringify([...cart, p])
+                        // );
+                        addToCart(p, 1);
                         toast.success("Item added to Cart");
                       }}
                     >

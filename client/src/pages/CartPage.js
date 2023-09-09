@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { useAuth } from "../components/context/auth";
 import { useCart } from "../components/context/cart";
@@ -7,14 +7,46 @@ import { useNavigate } from "react-router-dom";
 const CartPage = () => {
   const [auth] = useAuth();
   const [cart, setCart] = useCart();
+  // const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
+
+  const handleQuantityMore = (product) => {
+    const updatedCart = [...cart];
+    const productIndex = updatedCart.findIndex(
+      (item) => item.product._id === product.product._id
+    );
+
+    if (productIndex !== -1) {
+      // Increase the quantity of the product in the cart
+      updatedCart[productIndex].quantity += 1;
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      totalPrice();
+    }
+  };
+  const handleQuantityLess = (product) => {
+    const updatedCart = [...cart];
+    const productIndex = updatedCart.findIndex(
+      (item) => item.product._id === product.product._id
+    );
+
+    if (productIndex !== -1) {
+      // Increase the quantity of the product in the cart
+      if (updatedCart[productIndex].quantity > 1) {
+        updatedCart[productIndex].quantity -= 1;
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        totalPrice();
+      }
+    }
+  };
 
   //total price
   const totalPrice = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total += item.price;
+        total += item.product.price * item.quantity;
         return total;
       });
       return total.toLocaleString("en-IN", {
@@ -33,7 +65,7 @@ const CartPage = () => {
       // myCart.splice(index, 1);
       // setCart(myCart);
       // localStorage.setItem("cart", JSON.stringify(myCart));
-      const updatedCart = cart.filter((item) => item._id !== pid);
+      const updatedCart = cart.filter((item) => item.product._id !== pid);
 
       // Update the state with the new cart
       setCart(updatedCart);
@@ -66,25 +98,44 @@ const CartPage = () => {
           <div className="col-md-8">
             {cart?.map((p) => (
               <div
-                key={p._id + p.name}
+                key={p.product._id}
                 className="row card w-75 flex-row mb-2 p-2"
               >
                 <div className="col-md-4">
                   <img
-                    src={`/api/v2/product/product-photo/${p._id}`}
+                    src={`/api/v2/product/product-photo/${p.product._id}`}
                     className="card-img"
                     alt={p.name}
                     // width={"100px"}
                     // height={"100px"}
                   />
                 </div>
-                <div className="col-md-8">
-                  <p>{p.name}</p>
-                  <p>{p.description.substring(0, 30)}</p>
-                  <p>Price : {p.price}</p>
+                <div className="col-md-4">
+                  <p>{p.product.name}</p>
+                  {/* {JSON.stringify(p, null, 4)} */}
+                  <p>{p.product.description.substring(0, 30)}</p>
+                  <p>Price : {p.product.price * p.quantity}</p>
+                </div>
+                <div className="col-md-4 d-flex flex-row justify-content-center align-items-center">
                   <button
-                    className="btn btn-danger"
-                    onClick={() => removeCartItem(p._id)}
+                    className="p-1"
+                    style={{ width: "1.4rem" }}
+                    onClick={() => handleQuantityLess(p)}
+                  >
+                    -
+                  </button>
+                  <span>{p.quantity}</span>
+                  <button
+                    className="p-1"
+                    style={{ width: "1.4rem" }}
+                    // onClick={handleQuantityMore(p)}
+                    onClick={() => handleQuantityMore(p)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btn btn-danger ms-2"
+                    onClick={() => removeCartItem(p.product._id)}
                   >
                     Remove
                   </button>
