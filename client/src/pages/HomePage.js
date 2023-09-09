@@ -140,11 +140,12 @@ const HomePage = () => {
               backgroundSize: "cover", // You can adjust this property to control how the image is displayed
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              height: "22rem",
+              height: "18rem",
               width: "100%",
               boxShadow: "0 5px 20px rgba(5, 1, 9, 0.7)",
               transition: "transform 0.2s ease-in-out",
               borderRadius: "0 0 1.6rem 1.6rem",
+              filter: "brightness(90%) contrast(140%) ",
 
               // You can also set other background properties like background-color here if needed
             }}

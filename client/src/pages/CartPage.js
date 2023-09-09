@@ -21,7 +21,6 @@ const CartPage = () => {
       updatedCart[productIndex].quantity += 1;
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-      totalPrice();
     }
   };
   const handleQuantityLess = (product) => {
@@ -36,7 +35,6 @@ const CartPage = () => {
         updatedCart[productIndex].quantity -= 1;
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
-        totalPrice();
       }
     }
   };
@@ -99,15 +97,17 @@ const CartPage = () => {
             {cart?.map((p) => (
               <div
                 key={p.product._id}
-                className="row card w-75 flex-row mb-2 p-2"
+                className="row card flex-row mb-2 p-2"
+                // style={{ width: "40rem", height: "10rem" }}
               >
                 <div className="col-md-4">
                   <img
                     src={`/api/v2/product/product-photo/${p.product._id}`}
                     className="card-img"
                     alt={p.name}
-                    // width={"100px"}
-                    // height={"100px"}
+                    width={"140rem"}
+                    height={"140rem"}
+                    // style={{ backgroundSize: "contain" }}
                   />
                 </div>
                 <div className="col-md-4">
@@ -116,25 +116,46 @@ const CartPage = () => {
                   <p>{p.product.description.substring(0, 30)}</p>
                   <p>Price : {p.product.price * p.quantity}</p>
                 </div>
-                <div className="col-md-4 d-flex flex-row justify-content-center align-items-center">
+                <div className="col-md-4 d-flex flex-column justify-content-center ">
+                  <div className="mb-3">
+                    <button
+                      className="p-1"
+                      style={{
+                        width: "1.4rem",
+                        backgroundColor: "rgba(69, 61, 65, 0.8)",
+                        color: "white",
+                        borderRadius: "20%",
+                      }}
+                      onClick={() => handleQuantityLess(p)}
+                    >
+                      -
+                    </button>
+                    <span
+                      style={{
+                        borderRadius: "20%",
+                        backgroundColor: "rgba(226, 212, 219, 0.8)",
+                      }}
+                      className="m-1"
+                    >
+                      {p.quantity}
+                    </span>
+                    <button
+                      className="p-1"
+                      style={{
+                        width: "1.4rem",
+                        backgroundColor: "rgba(69, 61, 65, 0.8)",
+                        color: "white",
+                        borderRadius: "20%",
+                      }}
+                      // onClick={handleQuantityMore(p)}
+                      onClick={() => handleQuantityMore(p)}
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <button
-                    className="p-1"
-                    style={{ width: "1.4rem" }}
-                    onClick={() => handleQuantityLess(p)}
-                  >
-                    -
-                  </button>
-                  <span>{p.quantity}</span>
-                  <button
-                    className="p-1"
-                    style={{ width: "1.4rem" }}
-                    // onClick={handleQuantityMore(p)}
-                    onClick={() => handleQuantityMore(p)}
-                  >
-                    +
-                  </button>
-                  <button
-                    className="btn btn-danger ms-2"
+                    className="btn btn-danger w-75"
                     onClick={() => removeCartItem(p.product._id)}
                   >
                     Remove
