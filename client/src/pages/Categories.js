@@ -16,7 +16,7 @@ const Categories = () => {
                 key={c._id}
                 to={`/category/${c.slug}`}
                 className="btn btn-warning  p-3"
-                style={{ width: "18rem" }}
+                style={{ width: "16rem" }}
               >
                 {c.name}
               </Link>
