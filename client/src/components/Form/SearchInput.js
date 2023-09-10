@@ -24,12 +24,12 @@ const SearchInput = () => {
     <div>
       <form className="d-flex search" role="search" onSubmit={handleSubmit}>
         <input
-          className="form-control me-2"
+          className="form-control me-2 search"
           type="search"
           placeholder="Search"
           aria-label="Search"
           value={values.keyword}
-          style={{ width: "36rem" }}
+          // style={{ width: "36rem" }}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
         <button className="btn btn-outline-success" type="submit">

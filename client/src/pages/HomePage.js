@@ -134,17 +134,18 @@ const HomePage = () => {
       <div className="container-fluid">
         <div className="row">
           <div
-            className="col-md-12 d-flex justify-content-center align-items-center"
+            className="col-md-12 banner d-flex justify-content-center align-items-center"
             style={{
-              backgroundImage: `url('/assets/bannerImg.jpg')`, // Replace with the path to your image
+              backgroundImage: `url('/assets/bannerImg2.jpg')`, // Replace with the path to your image
+              // backgroundColor: "rgba(204, 143, 174, 0.8)",
               backgroundSize: "cover", // You can adjust this property to control how the image is displayed
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               height: "18rem",
               width: "100%",
-              boxShadow: "0 5px 20px rgba(5, 1, 9, 0.7)",
+              boxShadow: "0 5px 20px rgba(5, 1, 9, 0.5)",
               transition: "transform 0.2s ease-in-out",
-              borderRadius: "0 0 1.6rem 1.6rem",
+              borderRadius: "0 0 1.3rem 1.3rem",
               filter: "brightness(90%) contrast(140%) ",
 
               // You can also set other background properties like background-color here if needed
